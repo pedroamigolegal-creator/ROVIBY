@@ -1,0 +1,81 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "Source/**"
+      - ".github/workflows/**"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-22.04
+            artifact_name: RFD-gnu-linux
+            asset_name: RFD-gnu-linux
+            sep: ':'
+          - os: windows-latest
+            artifact_name: RFD-windows
+            asset_name: RFD-windows.exe
+            sep: ';'
+      fail-fast: false
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Get Version Number
+        id: version_num
+        shell: bash
+        run: |
+          export LC_ALL=en_US.utf8
+          GIT_COMMIT_ID=$(echo "${{ github.sha }}" |  cut -c 1-7)
+          GIT_RELEASE_VERSION=$(grep "(?<=GIT_RELEASE_VERSION = ''').+(?=''')" -Po "./Source/util/const.py")
+          UPDATE_TIME=$(echo ${{ github.event.repository.updated_at }} | sed 's/[:-]//g')
+          echo "tag_name=v${GIT_RELEASE_VERSION}-${UPDATE_TIME}" >> $GITHUB_ENV
+          echo "release_name=${GIT_RELEASE_VERSION}+${GIT_COMMIT_ID}" >> $GITHUB_ENV
+
+      - name: Set Up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install Dependencies
+        working-directory: Source
+        run: |
+          pip install pyinstaller==6.20.0
+          pip install pillow==12.3.0
+          pip install requests
+          pip install -r requirements.txt
+
+      - name: Build PyInstaller Package
+        working-directory: Source
+        run: pyinstaller RFD.spec
+
+      - name: Rename Executable
+        working-directory: Source
+        shell: bash
+        run: mv dist/* dist/${{ matrix.asset_name }}
+
+      - name: Upload Artefact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.artifact_name }}
+          path: Source/dist/${{ matrix.asset_name }}
+          if-no-files-found: error
+
+      - name: Release with Notes
+        uses: softprops/action-gh-release@v1
+        with:
+          files: Source/dist/*
+          name: ${{ env.release_name }}
+          tag_name: ${{ env.tag_name }}
+          generate_release_notes: true
+          prerelease: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

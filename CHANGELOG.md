@@ -1,0 +1,138 @@
+# 0.68.5
+
+- fix(fvars, v463): add some FFlags to mitigate telemetry risk
+- fix: re-re-re-review of CSGPHS8
+
+---
+
+![alt text](image.png)
+
+**I've been waiting for this result for over a year!** CSGPHS8 now works perfectly on at least two pieces of CSG that I tested.
+These unions are _not_ anchored and their physics were stored in the CSGPHS8 format. CSGPHS8 was released in 2025 and RFD did not properly support it before 0.68.5.
+
+Credit to [Salenware](https://github.com/Salenware/HYDROXIDE/blob/136fb36eb204c9dcd3926d040ab2bb2ce1319bad/DEPENDENCIES/Captcha.lua) for the reference implementation.
+
+# 0.68.4
+
+- [fix](https://github.com/Windows81/Roblox-Freedom-Distribution/pull/213): copy host environment before passing `env` attribute to Popen when launching Wine
+- test: add Speed Run 4 to _Examples_ sub-repository
+- build: enforce remote timestamp for commit messages
+- feat(webserver): add `/Setting/QuietGet/AndroidAppSettings/` for future Android release of RFD
+- docs(guides): document full coverage of x86 patches for v347 Player
+
+# 0.68.3
+
+- docs: reformat `--help` messages
+- feat(bootstrap): replace TTY prompt with `--force_update_bins` and `--skip_existing_bins` flags
+- feat: notify users of shell-based one-liner fix when opening unserialised `rbxl` file in `studio` mode
+- fix: quitting action via Ctrl+C on Studio
+- fix: re-re-review of CSGPHS8
+
+# 0.68.2
+
+- build: reduce Studio v463 size by removing duplicate files
+- refactor: merge RCC flags-filter with Player flag-filter
+- fix(fvars): streamline default FFlag and FLog options
+
+# 0.68.1
+
+- feat(flog): extend `--log_options` support to Player
+- docs: clarify info and fix spelling errors in main `README.md`
+- fix(download): correct handling when missing `--rbx_version` or `--bin_type`
+- feat: add override environment variable `placeid` for asset extraction
+- build: add pre-configured `./Source/RFD.spec` for use with PyInstaller
+- build(deps): `tomli` to be vendored ([?](https://stackoverflow.com/a/26217631/6879778))
+
+# 0.68.0
+
+- **feat!(deps): add dependency `tomli~=2.4.1` to force TOML 1.1.0 support**
+- feat: add `game_setup.roblox_setting_overrides` to override FFlags and other settings
+
+# 0.67.2
+
+- [fix](https://github.com/Windows81/Roblox-Freedom-Distribution/issues/199): `./Content` incorrectly title-cased in Studio v347, causing issues on GNU
+- [fix](https://github.com/Windows81/Roblox-Freedom-Distribution/issues/201): settings URL `/Setting/QuietGet/%s` did not always replace `%s` with `RCCService`
+
+# 0.67.1
+
+- feat(fvars, v463): migrated FFlags from modified-per-run local `.json` files, to being fetched from remote webserver
+- fix: `/asset?ID=${ID}` to accept uppercase `ID` field
+
+# 0.67.0
+
+- **fix!: change RakNet offline message signature to bypass Egyptian ISP blocks**
+- feat(fvars, v347): migrated FFlags from modified-per-run local `.json` files, to being fetched from remote webserver
+- fix(studio): fix loading screen incorrectly showing in Studio v347
+- build: update Pillow to 12.3.0
+
+# 0.66.5
+
+- fix: continual improvements to _CSGPHS8_
+- fix(wine): send file paths to Popen which are resolved by `winepath -w`
+- fix(wine): erroneous parsing of `AppSettings.xml` when launching `RCCService.exe` via Wine
+- build: integrate certain `pip` packages directly into `./Source/vendored`
+
+# 0.66.4
+
+- feat: players can be held in loading screen until RCC first calls `/rfd/data-transfer`
+- feat(config): add `game_setup.ready_delay_sec` to control server-init delay before clients can join a game
+- build: update dependencies to ensure existence with pre-compiled Python 3.14 wheels for Windows
+
+# 0.66.3
+
+- fix: load homepage in v463 Studio
+
+# 0.66.2
+
+- feat(beta): support for modern _CSGPHS8_ physics meshes
+- fix: default remote resource `rbxmtl-studs.dds` not loading
+- fix: properly repair `--clear_temp_cache` command flag
+- build: `zstandard` and `dracopy` to come installed in this and future releases
+- test: add `--clear_temp_cache` by default to most VSCode debug options
+
+# 0.66.{0,1}
+
+- **[fix!](https://github.com/Windows81/Roblox-Freedom-Distribution/issues/138): repair v347 by replacing Player's `ClientAppSettings.json`**
+- feat!(config): changed method signatures of `server_core.check_user_allowed` and `server_core.retrieve_default_user_code`
+- feat(config): add GameConfig option `server_core.retrieve_membership_type(id_num, user_code)`
+- feat(webserver): add `/Game/Badge/HasBadge.ashx` and `/assets/award-badge` endpoints
+- feat(serialiser): support for modern _CSGMDL5_ unions
+- [fix](https://github.com/Windows81/Roblox-Freedom-Distribution/pull/160): disable SSL certificate verification to work around PyInstaller incompatiblity
+- [fix](https://github.com/Windows81/Roblox-Freedom-Distribution/issues/151)(persistence): marketplace purchase fail
+- fix(webserver): route `/Asset` and `/Asset/` to existing `/v1/asset`
+- fix(webserver): persistence `target` not existing on route `/persistence/set`
+- fix(webserver): `/marketplace/productinfo` to support all-lowercase `assetid` query param
+- fix(webserver): route `/Login/Negotiate.ashx` to already-existing `/login/negotiate.ashx`
+- fix(launcher): repair `--clear_temp_cache` command flag
+- build: update link to `sqlite-worker` dependency
+- test: add unit test for CSGMDL2's hashing algorithm
+- test: add unit test to convert CSGMDL5 to CSGMDL2 format
+
+# 0.65.4
+
+- fix: modify heuristics to activate mesh parser
+- docs(guides, beta): add information about interaction with `MessagingService`
+
+# 0.65.3
+
+- docs: show additional important use case for `asset_redirects` parameter
+- docs(guides): additional background information for `PatchTLSVerification` and `AdvancedTrustCheck2021E` guides
+- docs(guides): add `RCCServiceFFlagsFetchPatch` guide for Rōblox 227; _not_ relevant to core RFD
+
+# 0.65.2
+
+- fix(serialiser): broaden regex pattern for Rōblox asset links
+- fix(launcher, server): assign `-p` alias for both web and RCC connection
+
+# 0.65.0
+
+- [feat!](https://github.com/Windows81/Roblox-Freedom-Distribution/discussions/139): move `./Roblox/v348` to `./Roblox/v347`
+- [feat!](https://github.com/Windows81/Roblox-Freedom-Distribution/discussions/130): to address DataStore2 behaviour, ordered data stores to no longer collide with unordered data stores of the same name
+- feat(launcher): assign `-p` alias for both web and RCC connection
+- feat(launcher): support for multiple RFD instances across consecutive TCP/UDP ports
+- build: update `pyinstaller` to 6.18.0
+
+# 0.64.4
+
+- docs(guides): additional background information for `PatchTLSVerification` guide
+- feat!(launcher): change flag name `--clear_cache` to `--clear_temp_cache`
