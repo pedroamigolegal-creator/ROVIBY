@@ -8,12 +8,12 @@
 <!--<![endif]-->
 <head data-machine-id="WEB8594">
     <!-- MachineID: WEB8594 -->
-    <title>Roviby</title>
+    <title>Roblox</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,requiresActiveX=true" />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="Roviby Corporation" />
-<meta name="description" content="Roviby is a global platform that brings people together through play." />
+<meta name="author" content="Roblox Corporation" />
+<meta name="description" content="Roblox is a global platform that brings people together through play." />
 <meta name="keywords" content="free games, online games, building games, virtual worlds, free mmo, gaming cloud, physics engine" />
 <meta name="apple-itunes-app" content="app-id=431946152" />
 
@@ -25,7 +25,7 @@
     {
     "@context" : "http://schema.org",
     "@type" : "Organization",
-    "name" : "Roviby",
+    "name" : "Roblox",
     "url" : "https://www.roblox.com/",
     "logo": "https://images.rbxcdn.com/c69b74f49e785df33b732273fad9dbe0.png",
     "sameAs" : [
@@ -38,27 +38,27 @@
     "https://www.twitch.tv/roblox"
     ]
     }
-</script>    <meta property="og:site_name" content="ROVIBY" />
-    <meta property="og:title" content="Roviby" />
+</script>    <meta property="og:site_name" content="ROBLOX" />
+    <meta property="og:title" content="Roblox" />
     <meta property="og:type" content="website"/>
         <meta property="og:url" content="https://www.roblox.com/" />
-    <meta property="og:description" content="Roviby is ushering in the next generation of entertainment. Imagine, create, and play together with millions of players across an infinite variety of immersive, user-generated 3D worlds."/>
+    <meta property="og:description" content="Roblox is ushering in the next generation of entertainment. Imagine, create, and play together with millions of players across an infinite variety of immersive, user-generated 3D worlds."/>
             <meta property="og:image" content="https://images.rbxcdn.com/6c27cb9db1779888868bf7d87e6d3709.jpg" />
     <meta property="fb:app_id" content="190191627665278">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@Roblox">
-    <meta name="twitter:title" content="Roviby">
-    <meta name="twitter:description" content="Roviby is ushering in the next generation of entertainment. Imagine, create, and play together with millions of players across an infinite variety of immersive, user-generated 3D worlds.">
+    <meta name="twitter:title" content="Roblox">
+    <meta name="twitter:description" content="Roblox is ushering in the next generation of entertainment. Imagine, create, and play together with millions of players across an infinite variety of immersive, user-generated 3D worlds.">
     <meta name="twitter:creator">
             <meta name=twitter:image1 content="https://images.rbxcdn.com/6c27cb9db1779888868bf7d87e6d3709.jpg" />
     <meta name="twitter:app:country" content="US">
-    <meta name="twitter:app:name:iphone" content="ROVIBY Mobile">
+    <meta name="twitter:app:name:iphone" content="ROBLOX Mobile">
     <meta name="twitter:app:id:iphone" content="431946152">
     <meta name="twitter:app:url:iphone">
-    <meta name="twitter:app:name:ipad" content="ROVIBY Mobile">
+    <meta name="twitter:app:name:ipad" content="ROBLOX Mobile">
     <meta name="twitter:app:id:ipad" content="431946152">
     <meta name="twitter:app:url:ipad">
-    <meta name="twitter:app:name:googleplay" content="ROVIBY">
+    <meta name="twitter:app:name:googleplay" content="ROBLOX">
     <meta name="twitter:app:id:googleplay" content="com.roblox.client">
     <meta name="twitter:app:url:googleplay"/>
 
@@ -404,7 +404,7 @@ Roblox.BundleDetector.setTiming(window.performance.timing);
             //# sourceURL=somename.js
         </script>
     
-<link href="roviby-icon.png" rel="icon" type="image/png" />
+<link href="https://images.rbxcdn.com/23421382939a9f4ae8bbe60dbe2a3e7e.ico.gzip" rel="icon" />
 
 
     <link rel="stylesheet" onerror="Roblox.BundleDetector && Roblox.BundleDetector.reportBundleError(this)" data-bundlename="StyleGuide" data-bundle-source="Main" href="https://css.rbxcdn.com/d74f6bdd578f1c3c3cd7078f296e78c2a188a0e6722ab248f14edfe3b2339f5f.css" />
@@ -780,7 +780,7 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
     {
     "@context" : "http://schema.org",
     "@type" : "Organization",
-    "name" : "Roviby",
+    "name" : "Roblox",
     "url" : "https://www.roblox.com/",
     "logo": "https://images.rbxcdn.com/c69b74f49e785df33b732273fad9dbe0.png",
     "sameAs" : [
@@ -1021,38 +1021,6 @@ Roblox.Endpoints.Urls = Roblox.Endpoints.Urls || {};
         e.stopImmediatePropagation();
         window.location.href = TARGET;
     }, true);
-})();
-</script>
-
-<!-- Troca a logo do topo pela logo Roviby -->
-<script>
-(function () {
-    var LOGO = 'roviby-logo.png';
-    function swap() {
-        var root = document.getElementById('landing-page-container') || document.body;
-        var imgs = root.querySelectorAll('img');
-        for (var i = 0; i < imgs.length; i++) {
-            var im = imgs[i];
-            var tag = ((im.className || '') + ' ' + (im.alt || '') + ' ' + (im.src || '')).toLowerCase();
-            if (im.dataset.roviby) continue;
-            if (/logo|roblox/.test(tag) && !/timg/.test(tag)) {
-                im.dataset.roviby = '1';
-                im.removeAttribute('srcset');
-                im.src = LOGO;
-                im.alt = 'Roviby';
-            }
-        }
-        var els = root.querySelectorAll('[class*="logo"]');
-        for (var j = 0; j < els.length; j++) {
-            if (els[j].tagName === 'IMG') continue;
-            els[j].style.setProperty('background-image', 'url(' + LOGO + ')', 'important');
-            els[j].style.setProperty('background-size', 'contain', 'important');
-            els[j].style.setProperty('background-repeat', 'no-repeat', 'important');
-        }
-    }
-    new MutationObserver(swap).observe(document.documentElement, { childList: true, subtree: true });
-    document.addEventListener('DOMContentLoaded', swap);
-    swap();
 })();
 </script>
 </body>
